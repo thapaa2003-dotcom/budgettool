@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html.light { color-scheme: light; }
+
+body { @apply bg-navy-950 text-white font-sans antialiased; }
+html.light body { @apply bg-slate-100 text-slate-900; }
+
+.glass { @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-lg transition-all duration-300; }
+html.light .glass { @apply bg-white/80 border-slate-200 shadow-slate-200/60; }
+.glass:hover { @apply border-gold-500/30; }
+
+.input { @apply w-full bg-navy-900/80 border border-white/10 rounded-xl px-3 py-2.5 text-sm outline-none focus:border-gold-500/60 transition-colors placeholder:text-white/30; }
+html.light .input { @apply bg-white border-slate-300 text-slate-900 placeholder:text-slate-400; }
+
+.btn-gold { @apply bg-gradient-to-r from-gold-500 to-gold-600 text-navy-950 font-semibold rounded-xl px-4 py-2.5 text-sm hover:from-gold-400 hover:to-gold-500 active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none; }
+.btn-ghost { @apply border border-white/15 rounded-xl px-4 py-2.5 text-sm hover:border-gold-500/50 transition-colors; }
+html.light .btn-ghost { @apply border-slate-300 text-slate-700; }
+
+.label { @apply block text-xs uppercase tracking-wider text-white/50 mb-1.5 font-medium; }
+html.light .label { @apply text-slate-500; }
+
+.muted { @apply text-white/55; }
+html.light .muted { @apply text-slate-500; }
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+.confetti-piece { position: fixed; top: 0; width: 10px; height: 14px; z-index: 100; pointer-events: none; animation: confetti-fall linear forwards; }
+
+@media print {
+  body { background: white !important; color: black !important; }
+  .no-print { display: none !important; }
+  .glass { border: 1px solid #ddd; box-shadow: none; background: white; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
